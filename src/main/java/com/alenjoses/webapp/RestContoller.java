@@ -1,19 +1,37 @@
-package com.alenjoses.web;
+package com.alenjoses.webapp;
 
-import com.alenjoses.webapp.WebAppApplication;
-import org.springframework.stereotype.Controller;
+import com.alenjoses.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-public class RestContoller {
+import java.util.List;
 
-    @RequestMapping("hello")
-    @ResponseBody
+@RestController
+public class RestContoller  {
+
+
+
+    @GetMapping("hello")
     public String helloWorld(){
+        System.out.print("called");
 
         return "Hey ! Hello World";
     }
+    @GetMapping("hello-bean")
+    public HelloWorldBean helloworldBean(){
+
+        return new HelloWorldBean("Hello World");
+    }
+
+    @GetMapping("mylist/{name}")
+    public String getMyName(@PathVariable String name)
+    {
+        return "Hello " + name;
+
+    }
+
 
 }
